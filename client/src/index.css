@@ -14,121 +14,92 @@
 }
 
 body {
-  @apply bg-background-light dark:bg-background-dark text-gray-800;
+  @apply bg-background-light dark:bg-background-dark text-dark;
   font-family: Cantarell, "Source Han Serif CN VF" !important;
+  @apply antialiased;
+}
+
+/* Modern scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-light dark:bg-background-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-theme/50 rounded-full hover:bg-theme transition-colors;
+}
+
+/* Modern focus states */
+*:focus {
+  @apply outline-none ring-2 ring-theme/50 ring-offset-2 ring-offset-background-light dark:ring-offset-background-dark;
 }
 
 textarea:focus {
-  outline: none;
+  @apply outline-none ring-2 ring-theme/50;
+}
+
+/* Modern card and surface styling */
+.card {
+  @apply bg-surface-light dark:bg-surface-dark rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
 }
 
 .wmde-markdown {
-  @apply bg-w;
+  @apply bg-surface-light dark:bg-surface-dark;
   font-family: Cantarell, "Source Han Serif CN VF" !important;
 }
 
 .w-md-editor {
-  @apply bg-w;
+  @apply bg-surface-light dark:bg-surface-dark;
 }
 
 .wmde-markdown img {
-  @apply rounded-lg;
+  @apply rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-theme-hover dark:text-theme font-semibold;
+}
+
+a {
+  @apply text-theme hover:text-theme-hover transition-colors duration-200;
+}
+
+.link-line a {
+  @apply hover:underline decoration-theme-hover/50;
+}
+
+/* List styling */
 ol {
   list-style: decimal;
+  @apply pl-5;
 }
 
 ul {
   list-style: initial;
+  @apply pl-5;
 }
 
-.link-line a {
-  @apply hover:underline;
+/* Button styling */
+button, .button {
+  @apply rounded-md px-4 py-2 font-medium transition-all duration-200
+         bg-theme text-white hover:bg-theme-hover active:bg-theme-active
+         disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-.wmde-markdown code {
-  @apply text-theme bg-secondary;
+/* Code block styling */
+pre, code {
+  @apply bg-background-light dark:bg-background-dark rounded-md font-mono text-sm;
 }
 
-.markdown-alert {
-  @apply !border-l-2 border-2 rounded-lg !py-4 my-4 !px-4 !leading-snug space-y-0;
-}
-
-.markdown-alert-note {
-  @apply !border-indigo-300 bg-indigo-100 !text-indigo-400 dark:!bg-indigo-900 dark:!text-indigo-300 dark:!border-indigo-900;
-}
-
-.markdown-alert-warning {
-  @apply !border-yellow-300 bg-yellow-100 !text-yellow-400 dark:!bg-yellow-900 dark:!text-yellow-300 dark:!border-yellow-900;
-}
-
-.markdown-alert-tip {
-  @apply !border-green-300 bg-green-100 !text-green-400 dark:!bg-green-900 dark:!text-green-300 dark:!border-green-900;
-}
-
-.markdown-alert-important {
-  @apply !border-purple-300 bg-purple-100 !text-purple-400 dark:!bg-purple-900 dark:!text-purple-300 dark:!border-purple-900;
-}
-
-.markdown-alert-caution {
-  @apply !border-red-300 bg-red-100 !text-red-400 dark:!bg-red-900 dark:!text-red-300 dark:!border-red-900;
-}
-
-.markdown-alert-title {
-  @apply flex flex-row items-center !mb-0 !text-inherit !font-bold fill-current;
-}
-
-.p-inputtext {
-  @apply bg-secondary text-end px-2 py-2;
-}
-
-.octicon {
-  @apply mr-1 w-3;
-}
-
-.katex {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-/* animation */
-
-@keyframes anvil {
-  0% {
-    transform: scale(1) translateY(0px);
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-  }
-
-  1% {
-    transform: scale(0.96) translateY(10px);
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-  }
-
-  100% {
-    transform: scale(1) translateY(0px);
-    opacity: 1;
-    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-  }
-}
-
-.popup-content {
-  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-}
-
-.ani-show {
-  animation: anvil 0.5s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-}
-
-.ani-show-fast {
-  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
-}
-
+/* Table styling */
 .table {
   @apply w-full border-collapse my-4;
   overflow-x: auto;
@@ -203,4 +174,83 @@ a.toc-link {
 
 .is-active-link::before {
   @apply bg-theme;
+}
+
+/* animation */
+
+@keyframes anvil {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+
+  1% {
+    transform: scale(0.96) translateY(10px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+
+.popup-content {
+  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+.ani-show {
+  animation: anvil 0.5s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+.ani-show-fast {
+  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+.p-inputtext {
+  @apply bg-secondary text-end px-2 py-2;
+}
+
+.octicon {
+  @apply mr-1 w-3;
+}
+
+.katex {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown-alert {
+  @apply !border-l-2 border-2 rounded-lg !py-4 my-4 !px-4 !leading-snug space-y-0;
+}
+
+.markdown-alert-note {
+  @apply !border-indigo-300 bg-indigo-100 !text-indigo-400 dark:!bg-indigo-900 dark:!text-indigo-300 dark:!border-indigo-900;
+}
+
+.markdown-alert-warning {
+  @apply !border-yellow-300 bg-yellow-100 !text-yellow-400 dark:!bg-yellow-900 dark:!text-yellow-300 dark:!border-yellow-900;
+}
+
+.markdown-alert-tip {
+  @apply !border-green-300 bg-green-100 !text-green-400 dark:!bg-green-900 dark:!text-green-300 dark:!border-green-900;
+}
+
+.markdown-alert-important {
+  @apply !border-purple-300 bg-purple-100 !text-purple-400 dark:!bg-purple-900 dark:!text-purple-300 dark:!border-purple-900;
+}
+
+.markdown-alert-caution {
+  @apply !border-red-300 bg-red-100 !text-red-400 dark:!bg-red-900 dark:!text-red-300 dark:!border-red-900;
+}
+
+.markdown-alert-title {
+  @apply flex flex-row items-center !mb-0 !text-inherit !font-bold fill-current;
+}
+
+.wmde-markdown code {
+  @apply text-theme bg-secondary;
 }
